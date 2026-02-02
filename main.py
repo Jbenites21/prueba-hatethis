@@ -2,6 +2,14 @@ from fastapi import FastAPI
 
 app = FastAPI()
 
+app.add_middleware(
+    CORSMiddleware,
+    allow_origins=["*"], # En producción, aquí pones la URL de tu frontend. "*" significa "todos".
+    allow_credentials=True,
+    allow_methods=["*"],
+    allow_headers=["*"],
+)
+
 @app.get("/")
 def read_root():
     return {"mensaje": "Hola! Esta API está viva en la nube 🚀", "tecnologia": "FastAPI"}
